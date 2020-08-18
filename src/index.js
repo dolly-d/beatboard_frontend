@@ -3,6 +3,23 @@
 
 document.addEventListener("DOMContentLoaded", (event) => { 
 
+    fetch("http://localhost:3000/users")
+    .then(response => response.json())
+    .then(console.log)
+
+    fetch("http://localhost:3000/playlists")
+    .then(response => response.json())
+    .then(playlists => renderPlaylists(playlists))
+
+    fetch("http://localhost:3000/playlist_sounds")
+    .then(response => response.json())
+    .then(console.log)
+
+    fetch("http://localhost:3000/sounds")
+    .then(response => response.json())
+    .then(console.log)
+
+
     const keys = document.querySelectorAll(".key"),
     note = document.querySelector(".nowplaying"),
     hints = document.querySelectorAll(".hints");
@@ -24,33 +41,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 
-  const playlistUl = document.getElementById("playlist")
-
-  const submitHandler = () => {
-    document.addEventListener("click", function(e){
-        e.preventDefault()
-        const songForm = document.querySelector("form")
-        const songField = document.getElementById("sequence-field")
-    
-        const playlistLi = document.createElement("li")
-
-        playlistLi.innerText = songField.value
-        
-        playlistUl.append(playlistLi)
-        
-        songForm.reset()
-        
-        // debugger
-
-        // songToPlay.split("")
-
-        // debugger
-
-    })
-
-  }
-
-submitHandler()
+  
 
   // save to playlist method
   // push saved playlist to array
@@ -80,6 +71,71 @@ submitHandler()
   
   window.addEventListener("keydown", playNote);
   
+
+
+//cathy's work
+
+
+
+const renderPlaylists = (playlists) => {
+    renderPlaylist(playlists)
+}
+
+const playlistUl = document.getElementById("playlist")
+
+const renderPlaylist = (playlistObj) => {
+    playlistObj.forEach(playlist => {
+        const playlistLi = document.createElement("li")
+        playlistLi.innerText = playlist.name
+        playlistUl.append(playlistLi)
+    })
+    // debugger
+}
+
+
+
+  const submitHandler = () => {
+    document.addEventListener("submit", function(e){
+        e.preventDefault()
+        const songForm = document.querySelector("form")
+        const songField = songForm.querySelector("input")
+        const newPlaylistLi = document.createElement("li")
+        newSong = songField.value
+ 
+        newPlaylistLi.innerText = songField.value
+        
+        playlistUl.append(newPlaylistLi)
+        
+        songForm.reset()
+        
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+
+            body: JSON.stringify({name: newSong, user_id: 1})
+        }
+
+        fetch("http://localhost:3000/playlists", options)
+        .then(response => response.json())
+        .then(console.log)
+
+    })
+
+  }
+
+submitHandler()
+
+
+
+
+
+
+
+
 
 
 })
