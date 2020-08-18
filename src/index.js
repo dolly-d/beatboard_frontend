@@ -1,4 +1,6 @@
 
+
+
 document.addEventListener("DOMContentLoaded", (event) => { 
 
     const keys = document.querySelectorAll(".key"),
@@ -18,7 +20,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
     note.innerHTML = keyNote;
     audio.currentTime = 0;
     audio.play();
+
   }
+
+
+  const playlistUl = document.getElementById("playlist")
+
+  const submitHandler = () => {
+    document.addEventListener("click", function(e){
+        e.preventDefault()
+        const songForm = document.querySelector("form")
+        const songField = document.getElementById("sequence-field")
+    
+        const playlistLi = document.createElement("li")
+
+        playlistLi.innerText = songField.value
+        
+        playlistUl.append(playlistLi)
+        
+        songForm.reset()
+        
+        // debugger
+
+        // songToPlay.split("")
+
+        // debugger
+
+    })
+
+  }
+
+submitHandler()
 
   // save to playlist method
   // push saved playlist to array
@@ -48,11 +80,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   
   window.addEventListener("keydown", playNote);
   
-
-
-
-
-
 
 
 })
