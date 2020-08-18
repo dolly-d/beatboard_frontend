@@ -7,19 +7,45 @@
 <body>
 
 
-  <audio id="A">
-    <source src="src/samples/A0vH.wav" />
-  </audio>
-  <audio id="B">
-    <source src="src/samples/C6vH.wav" />
-  </audio>
+  
+ 
 
     <div id="p-wrapper">
 	    <ul id="piano">
-      <li><div id ="A" class="anchor"></div><span></span></li>
-      <li><div class="A_key"></div><span></span></li>
-      <li><div id ="b" class="anchor"></div><span></span></li>
-      <li><div class="B_key"></div><span></span></li>
+      <li>
+        <div class="anchor" >
+          <audio class="key">
+            <source src="src/samples/A0vH.wav" />
+          </audio>
+        </div>
+
+        <span>
+          <audio class="key">
+            <source src="src/samples/C1vH.wav" />
+          </audio>
+        </span>
+      </li>
+
+      <li>
+        <div class="anchor">
+          A
+          <audio class="key">
+            <source src="src/samples/A1vH.wav" />
+          </audio>
+        </div>
+        <span></span>
+      </li>
+
+      <li>
+        <div class="anchor">B</div><span></span>
+      </li>
+      <li>
+        <div class="anchor">
+          <audio class="key">
+            <source src="src/samples/C6vH.wav" />
+          </audio>
+        </div><span></span>
+      </li>
       <li><div class="anchor"></div></li>
       <li><div class="anchor"></div><span></span></li>
       <li><div class="anchor"></div><span></span></li>
@@ -44,9 +70,40 @@
       <li><div class="anchor"></div><span></span></li>
       <li><div class="anchor"></div></li>
       <li><div class="anchor"></div><span></span></li>
-      <li><div class="anchor"></div><span></span></li>
-      <li><div class="anchor"></div><span></span></li>
-      <li><div class="anchor"></div></li>
+      
+      <!-- //white key audio tag// -->
+      <li>
+        <div class="anchor"> 
+        <audio class="key">
+          <source src="src/samples/C3vH.wav" />
+        </audio>
+        </div></li>
+      <!-- //white key audio tag// -->
+
+          <!-- //black key audio tag// -->
+        <li>
+          <div class="anchor"></div><span>
+          <audio class="key">
+              <source src="src/samples/B6vH.wav" />
+          </audio>A2</span>A3
+        </li>
+          <!-- //black key audio tag// -->
+
+      
+          <!-- //black key audio tag, adding // -->
+      <li>
+        <div class="anchor">B</div><span>
+        <audio class="key">
+          <source src="src/samples/A6vH.wav" />
+        </audio></span></li>
+      <li>
+        <!-- //black key audio tag// -->
+
+      <div class="anchor">
+        <audio class="key">
+          <source src="src/samples/C6vH.wav" />
+        </audio>
+      </div></li>
       </ul>
     </div>
 
