@@ -185,7 +185,12 @@ document.addEventListener("click", function(e){
 
     fetch(playlistUrl, options)
     .then(response => response.json())
-    .then(console.log)
+    .then(newSong => {
+        newPlaylistLi.dataset.id = newSong.id
+        newPlaylistLi.innerHTML = `
+        <span>${newSong.name}</span> <button id="edit-playlist">Edit</button> <button id="delete-playlist">Delete</button>
+        `
+    })
 }
 
 })
