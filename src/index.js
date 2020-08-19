@@ -3,13 +3,17 @@
 
 document.addEventListener("DOMContentLoaded", (event) => { 
 
+const playlistUrl = "http://localhost:3000/playlists/"
+
     fetch("http://localhost:3000/users")
     .then(response => response.json())
     .then(console.log)
 
-    fetch("http://localhost:3000/playlists")
+    const getPlaylists = () => {
+    fetch(playlistUrl)
     .then(response => response.json())
     .then(playlists => renderPlaylists(playlists))
+    }
 
     fetch("http://localhost:3000/playlist_sounds")
     .then(response => response.json())
@@ -86,56 +90,97 @@ const playlistUl = document.getElementById("playlist")
 const renderPlaylist = (playlistObj) => {
     playlistObj.forEach(playlist => {
         const playlistLi = document.createElement("li")
-        playlistLi.innerText = playlist.name
+        playlistLi.dataset.id = playlist.id
+        playlistLi.innerHTML = `
+            <span>${playlist.name}</span> <button id="edit-playlist">Edit</button> <button id="delete-playlist">Delete</button>
+            `
         playlistUl.append(playlistLi)
     })
-    // debugger
 }
 
 
+const clickHandler = () => {
+document.addEventListener("click", function(e){
+    const songForm = document.querySelector("form")
+    const buttonText = songForm.querySelector("#save")
+    const songField = songForm.querySelector("input")
+    // debugger
+    
+    if(e.target.matches("#edit-playlist")){
+        // debugger
+        const editButton = e.target
+        const editButtonLi = editButton.parentElement
+        const currentId = parseInt(editButtonLi.dataset.id)
+        const songSpan = editButtonLi.querySelector("span")
+        buttonText.dataset.id = currentId
+        // debugger
 
-  const submitHandler = () => {
-    document.addEventListener("submit", function(e){
-        e.preventDefault()
-        const songForm = document.querySelector("form")
-        const songField = songForm.querySelector("input")
-        const newPlaylistLi = document.createElement("li")
+        buttonText.innerText = "Submit Edit"
+        
+        songField.value = songSpan.innerText
         newSong = songField.value
  
-        newPlaylistLi.innerText = songField.value
+    }else if(e.target.innerText === "Submit Edit"){
         
-        playlistUl.append(newPlaylistLi)
-        
-        songForm.reset()
-        
+        const submitEditButton = e.target
+        const form = submitEditButton.parentElement
+        const songField = form.querySelector("input")
+        newSong = songField.value
+        currentId = buttonText.dataset.id
 
         const options = {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-
-            body: JSON.stringify({name: newSong, user_id: 1})
+            body: JSON.stringify({name: newSong})
         }
-
-        fetch("http://localhost:3000/playlists", options)
+        
+        fetch(playlistUrl + currentId, options)
         .then(response => response.json())
-        .then(console.log)
+        .then(revisedPlaylistObj => {revisedPlaylistName = revisedPlaylistObj.name
+        const newLi = document.createElement("li")
+        newLi.innerText = revisedPlaylistName
+        playListUl.append(newLi) })
 
-    })
+    } else if(e.target.matches("#delete-playlist")){
+        console.log("clicked delete button")
 
-  }
+    } else if(e.target.textContent === "Save to playlist"){
+    e.preventDefault()
+    const songForm = document.querySelector("form")
+    const songField = songForm.querySelector("input")
+    const newPlaylistLi = document.createElement("li")
+    newSong = songField.value
 
-submitHandler()
+    newPlaylistLi.innerText = songField.value
+    
+    playlistUl.append(newPlaylistLi)
+    
+    songForm.reset()
+    
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
 
+        body: JSON.stringify({name: newSong, user_id: 1})
+    }
 
+    fetch(playlistUrl, options)
+    .then(response => response.json())
+    .then(console.log)
+}
 
+})
+}
 
-
-
-
-
+getPlaylists()
+// submitHandler()
+clickHandler()
 
 
 })

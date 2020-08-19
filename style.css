@@ -143,3 +143,12 @@ font-size: 20px;
 .keys:hover .hints {
 opacity: 1;
 }
+
+
+li {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  margin: 0;
+  }
