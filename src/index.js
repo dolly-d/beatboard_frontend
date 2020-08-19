@@ -145,7 +145,20 @@ document.addEventListener("click", function(e){
         playListUl.append(newLi) })
 
     } else if(e.target.matches("#delete-playlist")){
-        console.log("clicked delete button")
+        const deleteButton = e.target
+        const liToDelete = deleteButton.parentElement
+        liToDelete.remove()
+
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        }
+
+        fetch(playlistUrl + liToDelete.dataset.id, options)
+        .then(response => response.json())
 
     } else if(e.target.textContent === "Save to playlist"){
     e.preventDefault()
