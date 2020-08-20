@@ -1,9 +1,7 @@
-
-
-
 document.addEventListener("DOMContentLoaded", (event) => { 
 
 const playlistUrl = "http://localhost:3000/playlists/"
+let sequence = []
 
     fetch("http://localhost:3000/users")
     .then(response => response.json())
@@ -23,27 +21,33 @@ const playlistUrl = "http://localhost:3000/playlists/"
     .then(response => response.json())
     .then(console.log)
 
+    
+    sequence = document.getElementById('sequence-input').value
+    console.log(sequence)
 
     const keys = document.querySelectorAll(".key"),
     note = document.querySelector(".nowplaying"),
     hints = document.querySelectorAll(".hints");
   
   function playNote(e) {
-      
+    //   keyCodesArray.push(e.keyCode);
+    console.log(e)
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`),
       key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-  
+      debugger
+    console.log(audio)
+    console.log(key)
     if (!key) return;
   
     const keyNote = key.getAttribute("data-note");
-  
+    debugger
     key.classList.add("playing");
     note.innerHTML = keyNote;
     audio.currentTime = 0;
+    console.log("audio", audio)
     audio.play();
 
   }
-
 
   
 
@@ -52,13 +56,13 @@ const playlistUrl = "http://localhost:3000/playlists/"
   // listing the contents of playlist array under piano
   // click each playlistlist item to play playlist
 
-  function playPlaylist(keyArray) {
-    keyArray.forEach((key) => {
-        setTimeout(() => {
-            playNote(key)
-        }, 1000);
-    })
-  }
+//   function playPlaylist(keyArray) {
+//     keyArray.forEach((key) => {
+//         setTimeout(() => {
+//             playNote(key)
+//         }, 1000);
+//     })
+//   }
   
   function removeTransition(e) {
     if (e.propertyName !== "transform") return;
@@ -92,11 +96,46 @@ const renderPlaylist = (playlistObj) => {
         const playlistLi = document.createElement("li")
         playlistLi.dataset.id = playlist.id
         playlistLi.innerHTML = `
-            <span>${playlist.name}</span> <button id="edit-playlist">Edit</button> <button id="delete-playlist">Delete</button>
+            <div>
+            <span>${playlist.name}</span> <br>
+            <button id="play-button" data-name="${playlist.name}">Play</button><br>
+            <button id="edit-playlist">Edit</button> <br>
+            <button id="delete-playlist">Delete</button>
+            </div>
             `
         playlistUl.append(playlistLi)
     })
 }
+
+// playlistContainer.addEventListener('click', (event) => {
+//     if(event.target.id === "play-button"){
+//         sortPlaylist(playlistContainer.children[1].value)
+//     }
+// })
+
+// const sortPlaylist = (sequenceValue) => {
+//     let letterArray = []
+//     sequenceValue.split("").forEach(letter => letterArray.push(letter));
+
+//     for (let i=0; i<=letterArray.length; i++) { 
+//         task(i); 
+//     }
+//     function task(i) { 
+//         setTimeout(function() {
+//             playPlaylist(letterArray[i]) 
+//         }, 1000 * i); 
+//     } 
+//     // playPlaylist(letter)
+// }
+//   const playPlaylist = (key) => {
+//     letterArr.forEach((letter) => {
+//         setTimeout(()=> {
+//             const playSound = document.getElementById(`Key${letter.toUpperCase()}`) // add to uppercase to prevent bugs
+//             playSound.play()    
+//         }, 1000)
+//     })
+    
+// }
 
 
 const clickHandler = () => {
@@ -104,7 +143,32 @@ document.addEventListener("click", function(e){
     const songForm = document.querySelector("form")
     const buttonText = songForm.querySelector("#save")
     const songField = songForm.querySelector("input")
-    // debugger
+    const playButton = document.getElementById('play-button')
+    
+    // create global keyCodesArray
+    // when playNote() fires push e.keyCode into keyCodesArray
+    if(e.target.matches('#play-button')){
+        // e.target.dataset.name "fgh"
+        let keyArray = e.target.dataset.name.split("") //["f", "g", "h"]
+        
+        keyArray.forEach((key, index) => {
+            // loop throgh each character in the dataset
+            let note = {
+                keyCode: key.toUpperCase().charCodeAt(0)
+            }
+            setTimeout(() => {
+                playNote(note)
+                // 0 * 500
+                // 1 * 500...
+            }, index * 500)
+        })
+        
+        
+        
+        
+        debugger
+        return
+    }
     
     if(e.target.matches("#edit-playlist")){
         // debugger
@@ -173,6 +237,7 @@ document.addEventListener("click", function(e){
     
     songForm.reset()
     
+    debugger;
     const options = {
         method: 'POST',
         headers: {
@@ -180,18 +245,40 @@ document.addEventListener("click", function(e){
             'Accept': 'application/json',
         },
 
-        body: JSON.stringify({name: newSong, user_id: 1})
+        body: JSON.stringify({name: newSong, user_id: 1, key_code: sequence})
     }
+    
 
     fetch(playlistUrl, options)
     .then(response => response.json())
     .then(newSong => {
         newPlaylistLi.dataset.id = newSong.id
         newPlaylistLi.innerHTML = `
-        <span>${newSong.name}</span> <button id="edit-playlist">Edit</button> <button id="delete-playlist">Delete</button>
+        <div>
+        <span>${newSong.name}</span> <br>
+         <button id="play-button" data-name="${newSong.name}">Play</button><br>
+        <button id="edit-playlist">Edit</button><br> 
+        <button id="delete-playlist">Delete</button><br>
+        </div>
         `
+        
     })
 }
+
+    playButton.addEventListener('click', (e) => {
+        // I want to grab the new sound sequence that was
+        
+        debugger
+
+        // grabNewSoundSequence()
+
+        // // added, iterate through each key
+        // iterateThroughEachKey()
+
+        // // play the sound
+        // playNote()
+
+    })
 
 })
 }

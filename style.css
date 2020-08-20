@@ -144,11 +144,49 @@ font-size: 20px;
 opacity: 1;
 }
 
+.music-form {
+  position: absolute;
+  border: auto auto auto auto;
+  font-size: 40px;
+  border-color: white;
+  bottom: 500px;
+  background: gray;
+
+}
+
+.playlist {
+  position: absolute; 
+  border-radius: 25px;
+  bottom: 400px;
+}
 
 li {
+  list-style: none;
+  position: relative;
+  
+  border-radius: 25px;
+  bottom: 150px;
   color: white;
   font-size: 20px;
   font-weight: 400;
-  letter-spacing: 0.18em;
-  margin: 0;
+  /* letter-spacing: 0.18em; */
+  float: left;
+  /* margin-left: auto;
+  margin-right: auto; */
   }
+
+#play-button {
+  box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#030303;
+	font-family:Arial;
+	font-size:10px;
+	padding:7px 15px;
+	text-decoration:bold;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
