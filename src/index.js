@@ -34,13 +34,13 @@ let sequence = []
     console.log(e)
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`),
       key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-      debugger
+    //   debugger
     console.log(audio)
     console.log(key)
     if (!key) return;
   
     const keyNote = key.getAttribute("data-note");
-    debugger
+    // debugger
     key.classList.add("playing");
     note.innerHTML = keyNote;
     audio.currentTime = 0;
@@ -162,10 +162,7 @@ document.addEventListener("click", function(e){
                 // 1 * 500...
             }, index * 500)
         })
-        
-        
-        
-        
+        // 
         debugger
         return
     }
@@ -173,8 +170,9 @@ document.addEventListener("click", function(e){
     if(e.target.matches("#edit-playlist")){
         // debugger
         const editButton = e.target
-        const editButtonLi = editButton.parentElement
+        const editButtonLi = editButton.parentElement.parentElement
         const currentId = parseInt(editButtonLi.dataset.id)
+        // debugger
         const songSpan = editButtonLi.querySelector("span")
         buttonText.dataset.id = currentId
         // debugger
@@ -186,12 +184,12 @@ document.addEventListener("click", function(e){
  
     }else if(e.target.innerText === "Submit Edit"){
         
-        const submitEditButton = e.target
-        const form = submitEditButton.parentElement
-        const songField = form.querySelector("input")
-        newSong = songField.value
+        const submitEditButton = e.target //edit button triggers patch
+        const form = submitEditButton.parentElement  //captures associated form
+        const songField = form.querySelector("input")  //captures input field
+        newSong = songField.value //captures new song name
         currentId = buttonText.dataset.id
-
+        // debugger
         const options = {
             method: 'PATCH',
             headers: {
@@ -210,9 +208,8 @@ document.addEventListener("click", function(e){
 
     } else if(e.target.matches("#delete-playlist")){
         const deleteButton = e.target
-        const liToDelete = deleteButton.parentElement
+        const liToDelete = deleteButton.parentElement.parentElement
         liToDelete.remove()
-
         const options = {
             method: 'DELETE',
             headers: {
@@ -237,7 +234,7 @@ document.addEventListener("click", function(e){
     
     songForm.reset()
     
-    debugger;
+    // debugger;
     const options = {
         method: 'POST',
         headers: {
