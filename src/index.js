@@ -106,7 +106,7 @@ const playlistUrl = "http://localhost:3000/playlists/"
             setTimeout(() => {
                 playNote(note)
                
-            }, index * 150)
+            }, index * 220)
         })  
     
     }
@@ -188,7 +188,7 @@ const playlistUrl = "http://localhost:3000/playlists/"
             'Accept': 'application/json',
         },
 
-        body: JSON.stringify({name: newSong, user_id: 1, key_code: sequence})
+        body: JSON.stringify({name: newSong, user_id: 1})
     }
     
 

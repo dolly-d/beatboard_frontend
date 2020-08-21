@@ -155,7 +155,7 @@ opacity: 1;
 }
 
 .playlist {
-  position: absolute; 
+  /* position: absolute;  */
   font-style: oblique;
   font-family: Georgia, serif;
   color: black;
@@ -172,7 +172,7 @@ opacity: 1;
 
 li {
   list-style: none;
-  position: relative;
+  position: center;
   display: block;
   border-radius: 10px;
   bottom: 350px;
@@ -201,8 +201,8 @@ li {
 	text-decoration:bold;
 	text-shadow:0px 1px 0px #e1e2ed;
 }
-#edit-playlist {
-  box-shadow: 3px 4px 0px 0px #899599;
+
+#edit-playlist { box-shadow: 3px 4px 0px 0px #899599;
 	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
 	background-color:#ededed;
 	border-radius:15px;
@@ -214,8 +214,10 @@ li {
 	font-size:12px;
 	padding:7px 15px;
 	text-decoration:bold;
-	text-shadow:0px 1px 0px #e1e2ed;
+  text-shadow:0px 1px 0px #e1e2ed;
 }
+  
+
 #delete-playlist {
   box-shadow: 3px 4px 0px 0px #899599;
 	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
