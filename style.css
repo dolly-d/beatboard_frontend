@@ -156,23 +156,34 @@ opacity: 1;
 
 .playlist {
   position: absolute; 
-  border-radius: 25px;
+  font-style: oblique;
+  font-family: Georgia, serif;
+  color: black;
+  border-radius: 40px;
+  
   bottom: 400px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.6;
+  width: 100px;
+  border: 15px solid rgb(179, 173, 173);
+  padding: 20px;
+  margin: 20px;
 }
 
 li {
   list-style: none;
   position: relative;
-  
-  border-radius: 25px;
-  bottom: 150px;
-  color: white;
+  display: block;
+  border-radius: 10px;
+  bottom: 350px;
+  color: black;
   font-size: 20px;
-  font-weight: 400;
-  /* letter-spacing: 0.18em; */
+  font-weight: 600;
   float: left;
-  /* margin-left: auto;
-  margin-right: auto; */
+  background-color: rgb(255, 255, 255);
+  opacity: 0.6;
+  margin: 5px;
+  
   }
 
 #play-button {
@@ -184,8 +195,39 @@ li {
 	display:inline-block;
 	cursor:pointer;
 	color:#030303;
-	font-family:Arial;
-	font-size:10px;
+	font-family:Georgia, serif;
+	font-size:12px;
+	padding:7px 15px;
+	text-decoration:bold;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+#edit-playlist {
+  box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#030303;
+	font-family:Georgia, serif;
+	font-size:12px;
+	padding:7px 15px;
+	text-decoration:bold;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+#delete-playlist {
+  box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#030303;
+	font-family:Georgia, serif;
+  font-size:12px;
+  font-weight: 500;
 	padding:7px 15px;
 	text-decoration:bold;
 	text-shadow:0px 1px 0px #e1e2ed;
