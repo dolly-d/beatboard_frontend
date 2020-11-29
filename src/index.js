@@ -37,7 +37,6 @@ const playlistUrl = "http://localhost:3000/playlists/"
         key.classList.add("playing");
         note.innerHTML = keyNote;
         audio.currentTime = 0;
-        console.log("audio", audio)
         audio.play();
 
   }
@@ -118,7 +117,6 @@ const playlistUrl = "http://localhost:3000/playlists/"
         const editButton = e.target
         const editButtonLi = editButton.parentElement
         const currentId = parseInt(editButtonLi.dataset.id)
-        // debugger
         const songSpan = editButtonLi.querySelector("span")
         buttonText.dataset.id = currentId
         
@@ -135,7 +133,6 @@ const playlistUrl = "http://localhost:3000/playlists/"
         const songField = form.querySelector("input")  //captures input field
         newSong = songField.value //captures new song name
         currentId = buttonText.dataset.id
-        // debugger
         const options = {
             method: 'PATCH',
             headers: {
@@ -212,7 +209,7 @@ const playlistUrl = "http://localhost:3000/playlists/"
 }
 
 getPlaylists()
-// submitHandler()
+
 clickHandler()
 
 
