@@ -17,9 +17,9 @@ const playlistUrl = "http://localhost:3000/playlists/"
         .then(response => response.json())
         .then(console.log)
 
-    fetch("http://localhost:3000/sounds")
-        .then(response => response.json())
-        .then(console.log)
+    // fetch("http://localhost:3000/sounds")
+    //     .then(response => response.json())
+    //     .then(console.log)
 
     
     
@@ -62,7 +62,7 @@ const playlistUrl = "http://localhost:3000/playlists/"
   
 
 
-    //cathy's work
+
 
     const renderPlaylists = (playlists) => {
     renderPlaylist(playlists)
