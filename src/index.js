@@ -13,9 +13,9 @@ const playlistUrl = "http://localhost:3000/playlists/"
         .then(playlists => renderPlaylists(playlists))
     }
 
-    fetch("http://localhost:3000/playlist_sounds")
-        .then(response => response.json())
-        .then(console.log)
+    // fetch("http://localhost:3000/playlist_sounds")
+    //     .then(response => response.json())
+    //     .then(console.log)
 
     // fetch("http://localhost:3000/sounds")
     //     .then(response => response.json())
